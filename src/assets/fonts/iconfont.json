@@ -1,0 +1,58 @@
+{
+  "id": "2157875",
+  "name": "shareSystem",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15063745",
+      "name": "首页-选中",
+      "font_class": "main",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "3710225",
+      "name": "会员管理",
+      "font_class": "huiyuanguanli",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "10563344",
+      "name": "持仓",
+      "font_class": "chicang",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "10836127",
+      "name": "权限管理",
+      "font_class": "quanxian",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "10949362",
+      "name": "操作员管理",
+      "font_class": "caozuoyuanguanli",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "15066596",
+      "name": "平仓",
+      "font_class": "pingcang",
+      "unicode": "e74b",
+      "unicode_decimal": 59211
+    },
+    {
+      "icon_id": "15588276",
+      "name": "代理商管理",
+      "font_class": "daili",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
