@@ -1,4 +1,6 @@
-
+/**
+ * 图形验证码工具类
+ */
 function GVerify(options) { // 创建一个图形验证码对象，接收options对象为参数
     this.options = { // 默认options参数值
         id: '', // 容器Id

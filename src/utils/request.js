@@ -5,8 +5,7 @@ import { Message } from 'element-ui';
 import router from '@/router'
 
 const service = axios.create({
-    // 公共接口--这里注意后面会讲
-    baseURL: 'www.baidu.com',
+    baseURL: '',
     // 超时时间 单位是ms，这里设置了10s的超时时间
     timeout: 10 * 1000
 })

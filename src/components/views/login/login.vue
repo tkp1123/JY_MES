@@ -99,6 +99,7 @@ export default {
       var that = this
       this.$refs[form].validate(function (valid) {
         if (!valid) return that.$message.error('出错了')
+        //登录
         loginAPI(that.form).then((res) => {
           if (res.code == 200) {
             that.$store.commit('user/SET_TOKEN', JSON.stringify(res.data.token))
@@ -111,6 +112,7 @@ export default {
     resetForm(form) {
       this.$refs[form].resetFields()
     },
+    //获取侧边栏数据
     getNavList() {
       getNavAPI().then((res) => {
         this.$store.commit('user/SET_NAVLIST', JSON.stringify(res.data))
