@@ -8,6 +8,13 @@ export function getNavAPI(params) {
 }
 // 登录接口
 export function loginAPI(params) {
-    return http.post(`${resquest}/app/user`, params)
+    return http.post(`${resquest}/app/login`, params)
+}
+export function loginAPI2(params) {
+    return http.post(`${resquest}/app/login2`, params)
+}
+//注册接口
+export function registerAPI(params) {
+    return http.post(`${resquest}/app/register`, params)
 }
 

@@ -51,13 +51,13 @@
 
 <script>
 import { GVerify } from '@/utils/verifyCode'
-import { getNavAPI, loginAPI } from '@/utils/api'
+import { getNavAPI, loginAPI, loginAPI2 } from '@/utils/api'
 export default {
   name: 'login',
   data() {
     return {
       form: {
-        name: 'admin',
+        name: '白展堂',
         password: '123456',
         verifyCode: '',
       },
@@ -100,7 +100,15 @@ export default {
       this.$refs[form].validate(function (valid) {
         if (!valid) return that.$message.error('出错了')
         //登录
-        loginAPI(that.form).then((res) => {
+        // loginAPI(that.form).then((res) => {
+        //   if (res.code == 200) {
+        //     that.$store.commit('user/SET_TOKEN', JSON.stringify(res.data.token))
+        //     that.$store.commit('user/SET_USER_DATA', JSON.stringify(res.data))
+        //     that.getNavList()
+        //   }
+        // })
+
+        loginAPI2(that.form).then((res) => {
           if (res.code == 200) {
             that.$store.commit('user/SET_TOKEN', JSON.stringify(res.data.token))
             that.$store.commit('user/SET_USER_DATA', JSON.stringify(res.data))
