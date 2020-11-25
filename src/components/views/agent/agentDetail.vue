@@ -6,23 +6,33 @@
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item label="代理商名称">
             <el-input
-              v-model="formInline.mobile"
+              v-model="formInline.name"
               placeholder="代理商名称"
             ></el-input>
           </el-form-item>
           <el-form-item label="手机号">
-            <el-input v-model="formInline.name" placeholder="手机号"></el-input>
+            <el-input
+              v-model="formInline.mobile"
+              placeholder="手机号"
+            ></el-input>
           </el-form-item>
           <el-form-item label="状态">
-            <el-select v-model="formInline.region" placeholder="状态">
-              <el-option label="已启用" value="0"></el-option>
-              <el-option label="未启用" value="1"></el-option>
+            <el-select v-model="formInline.status" placeholder="状态">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button type="primary" @click="onSubmit">重置</el-button>
-            <el-button type="primary" icon="el-icon-plus">新增</el-button>
+            <el-button type="primary" @click="onReset">重置</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="add"
+              >新增</el-button
+            >
           </el-form-item>
         </el-form>
       </el-row>
@@ -147,6 +157,7 @@ export default {
       formInline: {
         mobile: '',
         name: '',
+        status: '',
       },
       tableData: [
         {
@@ -210,16 +221,10 @@ export default {
           label: '未启用',
         },
         {
-          value: '0',
+          value: '1',
           label: '已启用',
         },
       ],
-
-      condition: {
-        loginId: '',
-        nickName: '',
-        status: '',
-      },
     }
   },
   methods: {
@@ -245,7 +250,17 @@ export default {
       console.log(`当前页: ${val}`)
     },
     onSubmit() {
-      console.log('submit!')
+      console.log(this.formInline)
+    },
+    onReset() {
+      this.formInline.mobile = ''
+      this.formInline.name = ''
+      this.formInline.status = ''
+    },
+    //获取数据
+    getList() {},
+    add() {
+      console.log('add')
     },
     goBack() {
       console.log('go back')

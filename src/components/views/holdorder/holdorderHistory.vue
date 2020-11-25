@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="box-card">
-      <el-page-header @back="goBack" content="持仓明细"></el-page-header>
+      <el-page-header @back="goBack" content="持仓历史"></el-page-header>
       <el-row :gutter="30">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item label="会员手机号">
@@ -17,14 +17,19 @@
             ></el-input>
           </el-form-item>
           <el-form-item label="状态">
-            <el-select v-model="formInline.region" placeholder="平仓状态">
-              <el-option label="未平仓" value="0"></el-option>
-              <el-option label="已平仓" value="1"></el-option>
+            <el-select v-model="formInline.status" placeholder="平仓状态">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button type="primary" @click="onSubmit">重置</el-button>
+            <el-button type="primary" @click="onReset">重置</el-button>
           </el-form-item>
         </el-form>
       </el-row>
@@ -151,6 +156,7 @@ export default {
       formInline: {
         mobile: '',
         name: '',
+        status: '',
       },
       tableData: [
         {
@@ -271,19 +277,13 @@ export default {
       options: [
         {
           value: '0',
-          label: '未启用',
+          label: '未平仓',
         },
         {
-          value: '0',
-          label: '已启用',
+          value: '1',
+          label: '已平仓',
         },
       ],
-
-      condition: {
-        loginId: '',
-        nickName: '',
-        status: '',
-      },
     }
   },
   methods: {
@@ -294,7 +294,12 @@ export default {
       console.log(`当前页: ${val}`)
     },
     onSubmit() {
-      console.log('submit!')
+      console.log(this.formInline)
+    },
+    onReset() {
+      this.formInline.name = ''
+      this.formInline.mobile = ''
+      this.formInline.status = ''
     },
     goBack() {
       console.log('go back')

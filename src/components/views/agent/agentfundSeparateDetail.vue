@@ -23,7 +23,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item label="费用类别">
-            <el-select v-model="formInline.region" placeholder="费用类别">
+            <el-select v-model="formInline.category" placeholder="费用类别">
               <el-option label="建仓手续费" value="0"></el-option>
               <el-option label="递延费" value="1"></el-option>
               <el-option label="头寸" value="2"></el-option>
@@ -31,7 +31,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button type="primary" @click="onSubmit">重置</el-button>
+            <el-button type="primary" @click="onReset">重置</el-button>
           </el-form-item>
         </el-form>
       </el-row>
@@ -88,6 +88,7 @@ export default {
         mobile: '',
         name: '',
         orderId: '',
+        category: '',
       },
       tableData: [
         {
@@ -141,22 +142,21 @@ export default {
           updatedTime: '2020-10-12',
         },
       ],
+
       options: [
         {
           value: '0',
-          label: '未启用',
+          label: '建仓手续费',
         },
         {
-          value: '0',
-          label: '已启用',
+          value: '1',
+          label: '递延费',
+        },
+        {
+          value: '2',
+          label: '头寸',
         },
       ],
-
-      condition: {
-        loginId: '',
-        nickName: '',
-        status: '',
-      },
     }
   },
   methods: {
@@ -167,7 +167,13 @@ export default {
       console.log(`当前页: ${val}`)
     },
     onSubmit() {
-      console.log('submit!')
+      console.log(this.formInline)
+    },
+    onReset() {
+      this.formInline.name = ''
+      this.formInline.mobile = ''
+      this.formInline.orderId = ''
+      this.formInline.category = ''
     },
     goBack() {
       console.log('go back')

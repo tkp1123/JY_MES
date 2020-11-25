@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="box-card">
-      <el-page-header @back="goBack" content="持仓明细"></el-page-header>
+      <el-page-header @back="goBack" content="会员资金明细"></el-page-header>
       <el-row :gutter="30">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item label="会员手机号">
@@ -24,7 +24,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button type="primary" @click="onSubmit">重置</el-button>
+            <el-button type="primary" @click="onReset">重置</el-button>
           </el-form-item>
         </el-form>
       </el-row>
@@ -116,22 +116,6 @@ export default {
           updatedTime: '2020-10-12',
         },
       ],
-      options: [
-        {
-          value: '0',
-          label: '未启用',
-        },
-        {
-          value: '0',
-          label: '已启用',
-        },
-      ],
-
-      condition: {
-        loginId: '',
-        nickName: '',
-        status: '',
-      },
     }
   },
   methods: {
@@ -142,7 +126,12 @@ export default {
       console.log(`当前页: ${val}`)
     },
     onSubmit() {
-      console.log('submit!')
+      console.log(this.formInline)
+    },
+    onReset() {
+      this.formInline.name = ''
+      this.formInline.mobile = ''
+      this.formInline.orderId = ''
     },
     goBack() {
       console.log('go back')

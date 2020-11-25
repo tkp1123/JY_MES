@@ -24,7 +24,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button type="primary" @click="onSubmit">重置</el-button>
+            <el-button type="primary" @click="onReset">重置</el-button>
           </el-form-item>
         </el-form>
       </el-row>
@@ -169,7 +169,12 @@ export default {
       console.log(`当前页: ${val}`)
     },
     onSubmit() {
-      console.log('submit!')
+      console.log(this.formInline)
+    },
+    onReset() {
+      this.formInline.name = ''
+      this.formInline.mobile = ''
+      this.formInline.orderId = ''
     },
     goBack() {
       console.log('go back')

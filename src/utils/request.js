@@ -2,6 +2,7 @@
 import axios from 'axios'
 // 使用element-ui Message做消息提醒
 import { Message } from 'element-ui';
+import { Loading } from 'element-ui'
 import router from '@/router'
 
 const service = axios.create({
@@ -9,6 +10,18 @@ const service = axios.create({
     // 超时时间 单位是ms，这里设置了10s的超时时间
     timeout: 10 * 1000
 })
+// loading框设置局部刷新，且所有请求完成后关闭loading框
+let loading;
+function startLoading() {
+    loading = Loading.service({
+        lock: true,
+        text: "Loading...",
+        target: document.querySelector('.loading-area')//设置加载动画区域
+    });
+}
+function endLoading() {
+    loading.close();
+}
 // 2.请求拦截器
 service.interceptors.request.use(config => {
     //发请求前做的一些处理，数据转化，配置请求头，设置token,设置loading等，根据需求去添加
@@ -23,6 +36,7 @@ service.interceptors.request.use(config => {
     //  config.params = { 'token': token } //如果要求携带在参数中
     //   config.headers.token = token; //如果要求携带在请求头中
     // }
+    startLoading();
     return config
 }, error => {
     Promise.reject(error)
@@ -37,6 +51,7 @@ service.interceptors.response.use(response => {
             duration: 1500
         })
     }
+    endLoading()
     return response.data
 }, error => {
     /***** 接收到异常响应的处理开始 *****/
