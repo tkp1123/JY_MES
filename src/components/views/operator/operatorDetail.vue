@@ -30,9 +30,9 @@
           <el-form-item>
             <el-button type="primary" @click="onSubmit">查询</el-button>
             <el-button type="primary" @click="onReset">重置</el-button>
-            <el-button type="primary" icon="el-icon-plus" @click="add"
+            <!-- <el-button type="primary" icon="el-icon-plus" @click="add"
               >新增</el-button
-            >
+            > -->
           </el-form-item>
         </el-form>
       </el-row>

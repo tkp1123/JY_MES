@@ -141,6 +141,47 @@
         </el-row>
       </el-row>
     </el-card>
+    <!-- dialog对话框    添加代理商-->
+    <el-dialog
+      title="添加代理商"
+      :visible.sync="dialogVisible"
+      width="50%"
+      top="10vh"
+    >
+      <el-form ref="form" :model="form" label-width="100px" :rules="rules">
+        <el-form-item label="登录ID" prop="loginId">
+          <el-input v-model="form.loginId"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="pwd">
+          <el-input v-model="form.pwd" type="text"></el-input>
+        </el-form-item>
+        <el-form-item label="代理商名称" prop="nickName">
+          <el-input v-model="form.nickName"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号" prop="cellPhoneNumber">
+          <el-input v-model="form.cellPhoneNumber" type="phone"></el-input>
+        </el-form-item>
+        <el-form-item label="联系人" prop="person">
+          <el-input v-model="form.person" type="text"></el-input>
+        </el-form-item>
+        <el-form-item label="推荐码" prop="referralCode">
+          <el-input v-model="form.referralCode" type="number"></el-input>
+        </el-form-item>
+        <el-form-item label="头寸比率" prop="positionRatio">
+          <el-input v-model="form.positionRatio" type="number"></el-input>
+        </el-form-item>
+        <el-form-item label="手续费比率" prop="buyFeeRatio">
+          <el-input v-model="form.buyFeeRatio" type="number"></el-input>
+        </el-form-item>
+        <el-form-item label="递延费比率" prop="deferFeeRatio">
+          <el-input v-model="form.deferFeeRatio" type="number"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogDataReset()">取 消</el-button>
+        <el-button type="primary" @click="dialogOk()">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -148,16 +189,36 @@ export default {
   //代理商明细
   name: 'agentDetail',
   data() {
+    var checkPhone = function (rule, value, callback) {
+      const regPhone = /^1(3|4|5|6|7|8|9)\d{9}$/
+      if (regPhone.test(value)) {
+        return callback()
+      } else {
+        return callback(new Error('手机号码不合法'))
+      }
+    }
     return {
       queryInfo: '',
       currentPage1: 5,
       currentPage2: 5,
       currentPage3: 5,
       currentPage4: 4,
+      dialogVisible: false,
       formInline: {
         mobile: '',
         name: '',
         status: '',
+      },
+      form: {
+        loginId: '',
+        nickName: '',
+        pwd: '',
+        cellPhoneNumber: '',
+        person: '',
+        referralCode: '',
+        positionRatio: '',
+        buyFeeRatio: '',
+        deferFeeRatio: '',
       },
       tableData: [
         {
@@ -225,6 +286,93 @@ export default {
           label: '已启用',
         },
       ],
+      rules: {
+        loginId: [
+          {
+            required: true,
+            message: '请输入登录ID',
+            trigger: 'blur',
+          },
+          {
+            min: 3,
+            max: 5,
+            message: '长度在 3 到 5 个字符',
+            trigger: 'blur',
+          },
+        ],
+        nickName: [
+          {
+            required: true,
+            message: '请输入代理商名称',
+            trigger: 'blur',
+          },
+          {
+            min: 3,
+            max: 5,
+            message: '长度在 3 到 5 个字符',
+            trigger: 'blur',
+          },
+        ],
+        pwd: [
+          {
+            required: true,
+            message: '请输入密码',
+            trigger: 'blur',
+          },
+          {
+            min: 6,
+            max: 15,
+            message: '长度在 6 到 15 个字符',
+            trigger: 'blur',
+          },
+        ],
+        cellPhoneNumber: [
+          {
+            required: true,
+            message: '请输入手机号码',
+            trigger: 'blur',
+          },
+          {
+            validator: checkPhone,
+            trigger: 'blur',
+          },
+        ],
+        person: [
+          {
+            required: true,
+            message: '请输入联系人',
+            trigger: 'blur',
+          },
+        ],
+        referralCode: [
+          {
+            required: true,
+            message: '请输入推荐码',
+            trigger: 'blur',
+          },
+        ],
+        positionRatio: [
+          {
+            required: true,
+            message: '请输入头寸比率',
+            trigger: 'blur',
+          },
+        ],
+        buyFeeRatio: [
+          {
+            required: true,
+            message: '请输入手续费比率',
+            trigger: 'blur',
+          },
+        ],
+        deferFeeRatio: [
+          {
+            required: true,
+            message: '请输入递延费比率',
+            trigger: 'blur',
+          },
+        ],
+      },
     }
   },
   methods: {
@@ -260,7 +408,31 @@ export default {
     //获取数据
     getList() {},
     add() {
-      console.log('add')
+      this.dialogVisible = true
+    },
+    //添加代理商确定
+    dialogOk() {
+      var that = this
+      this.$refs.form.validate(function (valid) {
+        console.log(valid)
+        if (valid) {
+          //这里表示校验成功,提交数据,关闭dialog,还需要刷新列表form
+          that.$message.success('成功了')
+          //成功了以后还需要重置dialog内已填入的数据
+          //注意这里还需要区分,接口数据返回成功还是失败,成功关闭dialig并且
+          //重置数据,不成功不能重置和关闭dialog,并且弹出提示
+          that.dialogVisible = false
+          that.$refs.form.resetFields()
+        } else {
+          //这里表示校验失败,需要提示
+          that.$message.error('出错了')
+        }
+      })
+    },
+    //添加用户关闭dialog 和重置dialog数据
+    dialogDataReset() {
+      this.dialogVisible = false
+      this.$refs.form.resetFields()
     },
     goBack() {
       console.log('go back')
