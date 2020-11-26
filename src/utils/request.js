@@ -72,7 +72,7 @@ service.interceptors.response.use(response => {
             Message.error('服务器响应超时，请刷新当前页')
         }
     }
-
+    endLoading()
     Message.error(error.message)
     return Promise.resolve(error.response)
 })
