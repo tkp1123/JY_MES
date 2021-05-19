@@ -1,33 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import {
-  creditDetailRouter,
-  holdorderDetailRouter,
-  holdorderHistoryRouter,
-  stoplossHistoryRouter,
-  stopprofitHistoryRouter
-} from './modules/holdorder'
-import {
-  closeorderDetail
-} from './modules/closeorder'
-import {
-  memberDetailRouter,
-  memberfundDetailRouter
-} from './modules/member'
-import {
-  agentDetailRouter,
-  agentfundDetailRouter,
-  agentfundSeparateRouter,
-  agentfundSeparateDetailRouter
-} from './modules/agent'
-import {
-  operatorDetailRouter
-} from './modules/operator'
-import {
-  roleManagementRoute,
-  authorityDetailRoute,
-  authorityTemplateRoute
-} from './modules/authority'
 Vue.use(Router)
 //解决路由连续点击多次报错的问题
 const originalPush = Router.prototype.push
@@ -38,7 +10,7 @@ Router.prototype.push = function push(location) {
 const router = new Router({
   routes: [{
     path: '/',
-    redirect: '/login'
+    redirect: '/home'
   },
   {
     path: '/login',
@@ -57,22 +29,21 @@ const router = new Router({
         name: 'welcome',
         component: resolve => require(['@/components/views/welcome/welcome'], resolve)
       },
-      creditDetailRouter,
-      holdorderDetailRouter,
-      holdorderHistoryRouter,
-      stoplossHistoryRouter,
-      stopprofitHistoryRouter,
-      closeorderDetail,
-      memberDetailRouter,
-      memberfundDetailRouter,
-      agentDetailRouter,
-      agentfundDetailRouter,
-      agentfundSeparateRouter,
-      agentfundSeparateDetailRouter,
-      operatorDetailRouter,
-      roleManagementRoute,
-      authorityDetailRoute,
-      authorityTemplateRoute
+      {
+        path: '/order',
+        name: 'order',
+        component: resolve => require(['@/components/views/order/order'], resolve)
+      },
+      {
+        path: '/trans',
+        name: 'trans',
+        component: resolve => require(['@/components/views/trans/trans'], resolve)
+      },
+      {
+        path: '/statistics',
+        name: 'statistics',
+        component: resolve => require(['@/components/views/statistics/statistics'], resolve)
+      },
     ]
   },
   ]

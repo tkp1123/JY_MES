@@ -1,69 +1,89 @@
 <template>
-  <!-- 侧边  -->
-  <el-scrollbar wrap-class="scrollbar-wrapper">
-    <div class="nav_title">
-      <img class="img" src="@/assets/logo.png" v-if="getCollapse" />
-      <span v-else>国海证券</span>
-    </div>
+  <div>
     <el-menu
-      background-color="#333744"
-      text-color="#fff"
-      active-text-color="#409eff"
+      background-color="#fff"
+      text-color="#515a6e"
+      active-text-color="#0074ff"
       unique-opened
       :router="true"
-      :collapse="getCollapse"
+      :collapse="isCollapse"
       :collapse-transition="false"
       :default-active="$route.path"
     >
       <template v-for="menu in menuList">
-        <el-submenu :index="menu.id + ''" v-if="menu.children" :key="menu.id">
-          <template slot="title">
-            <i :class="menu.icon"></i>
-            <span>{{ menu.autoName }}</span>
-          </template>
-          <el-menu-item
-            v-for="child in menu.children"
-            :index="'/' + child.path"
-            :key="child.id"
-          >
-            <i class="el-icon-menu"></i>
-            <span>{{ child.autoName }}</span>
-          </el-menu-item>
-        </el-submenu>
-        <el-menu-item :index="'/' + menu.path" v-else :key="menu.id">
-          <i :class="menu.icon"></i>
-          <span slot="title">{{ menu.autoName }}</span>
+        <el-menu-item :index="'/' + menu.path" :key="menu.id">
+          <i :class="menu.icon" style="font-size: 30px"></i>
+          <div style="width: 100%; text-slign: center">
+            {{ menu.autoName }}
+          </div>
         </el-menu-item>
       </template>
     </el-menu>
-  </el-scrollbar>
+  </div>
 </template>
 <script>
-import store from '@/store'
 export default {
-  store,
-  computed: {
-    getCollapse() {
-      return this.$store.state.collapse.isCollapse
-    },
-  },
   data() {
     return {
-      menuList: JSON.parse(this.$store.state.user.navList).menuList,
+      isCollapse: true,
+      menuList: [
+        {
+          id: '1',
+          autoName: '首页',
+          path: 'welcome',
+          icon: 'iconfont icon-biaoqianA01_shouye-76',
+        },
+        {
+          id: '2',
+          autoName: '单据审核',
+          path: 'order',
+          icon: 'iconfont icon-danju',
+        },
+        {
+          id: '3',
+          autoName: '交易审核',
+          path: 'trans',
+          icon: 'iconfont icon-jiaoyijilu',
+        },
+        {
+          id: '4',
+          autoName: '统计',
+          path: 'statistics',
+          icon: 'iconfont icon-tongji',
+        },
+      ],
     }
   },
-  methods: {},
+
+  mounted() {},
 }
 </script>
 <style lang="less" scoped>
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+.bbb {
+  position: relative;
+}
+.ccc {
+  padding-left: 23px;
+  margin-top: 20px;
+}
+.ddd:active {
+  background: #f7f7f7;
+}
 .img {
   width: 45px;
   height: 45px;
 }
-
+.img_show {
+  height: 45px;
+}
 .iconfont {
-  margin-right: 10px;
-  font-size: 22px;
+  font-size: 18px;
 }
 .nav_title {
   color: #ffffff;
@@ -75,5 +95,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.el-menu--collapse {
+  width: 80px;
+}
+.el-menu-item {
+  padding: 0 !important;
+}
+.el-menu-item,
+.el-submenu__title {
+  height: 80px;
+  line-height: 25px;
+  padding-top: 20px !important;
+}
+.el-menu-item.is-active {
+  background: #eef7ff !important;
 }
 </style>

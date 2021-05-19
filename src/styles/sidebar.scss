@@ -2,7 +2,7 @@
 
   // 主体区域 Main container
   .main-container {
-    min-height: 100%;
+     min-height: 100%;
     transition: margin-left .28s;
     margin-left: $sideBarWidth;
     position: relative;
@@ -11,11 +11,11 @@
   // 侧边栏 Sidebar container
   .sidebar-container {
     transition: width 0.28s;
-    width: $sideBarWidth !important;
-    height: 100%;
+     width: 74px;
+    height: calc(100vh - 60px); 
     position: fixed;
     font-size: 0px;
-    top: 0;
+    //top: 0;
     bottom: 0;
     left: 0;
     z-index: 1001;

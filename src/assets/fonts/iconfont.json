@@ -1,100 +1,37 @@
 {
-  "id": "2157875",
-  "name": "shareSystem",
+  "id": "2523178",
+  "name": "aaa",
   "font_family": "iconfont",
-  "css_prefix_text": "icon",
+  "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "9164868",
-      "name": "收益",
-      "font_class": "shouyi1",
-      "unicode": "e634",
-      "unicode_decimal": 58932
-    },
-    {
-      "icon_id": "2097045",
-      "name": " 猜涨跌_link",
-      "font_class": "caizhangdie_link",
-      "unicode": "e665",
-      "unicode_decimal": 58981
-    },
-    {
-      "icon_id": "16120443",
-      "name": "分布",
-      "font_class": "fenbu",
-      "unicode": "e653",
-      "unicode_decimal": 58963
-    },
-    {
-      "icon_id": "423502",
-      "name": "分配",
-      "font_class": "fenpei",
-      "unicode": "e6b9",
-      "unicode_decimal": 59065
-    },
-    {
-      "icon_id": "10527626",
-      "name": "统计",
-      "font_class": "tongji",
+      "icon_id": "683408",
+      "name": "交易记录",
+      "font_class": "jiaoyijilu",
       "unicode": "e61d",
       "unicode_decimal": 58909
     },
     {
-      "icon_id": "9920448",
-      "name": "收益",
-      "font_class": "shouyi",
-      "unicode": "e61e",
-      "unicode_decimal": 58910
+      "icon_id": "774476",
+      "name": "单据",
+      "font_class": "danju",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
     },
     {
-      "icon_id": "15063745",
-      "name": "首页-选中",
-      "font_class": "main",
-      "unicode": "e602",
-      "unicode_decimal": 58882
+      "icon_id": "8159864",
+      "name": "统计",
+      "font_class": "tongji",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
     },
     {
-      "icon_id": "3710225",
-      "name": "会员管理",
-      "font_class": "huiyuanguanli",
-      "unicode": "e601",
-      "unicode_decimal": 58881
-    },
-    {
-      "icon_id": "10563344",
-      "name": "持仓",
-      "font_class": "chicang",
-      "unicode": "e675",
-      "unicode_decimal": 58997
-    },
-    {
-      "icon_id": "10836127",
-      "name": "权限管理",
-      "font_class": "quanxian",
-      "unicode": "e668",
-      "unicode_decimal": 58984
-    },
-    {
-      "icon_id": "10949362",
-      "name": "操作员管理",
-      "font_class": "caozuoyuanguanli",
-      "unicode": "e716",
-      "unicode_decimal": 59158
-    },
-    {
-      "icon_id": "15066596",
-      "name": "平仓",
-      "font_class": "pingcang",
-      "unicode": "e74b",
-      "unicode_decimal": 59211
-    },
-    {
-      "icon_id": "15588276",
-      "name": "代理商管理",
-      "font_class": "daili",
-      "unicode": "e600",
-      "unicode_decimal": 58880
+      "icon_id": "16385610",
+      "name": "首页",
+      "font_class": "biaoqianA01_shouye-76",
+      "unicode": "eac3",
+      "unicode_decimal": 60099
     }
   ]
 }

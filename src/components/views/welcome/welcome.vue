@@ -1,255 +1,139 @@
 <template>
-  <div class="container">
-    <el-row class="panel-group">
-      <el-col :xs="6" :sm="6" :lg="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetClick('apple')">
-          <div class="card-panel-description">
-            <div class="card-panel-text">
-              <i
-                class="iconfont iconfenbu"
-                style="color: #528fcc; padding-right: 10px; font-size: 25px"
-              ></i
-              >涨跌分布
-            </div>
-            <div class="card-panel-num">
-              <el-row>
-                <el-col :span="12" class="text-red">上涨： 1844只</el-col>
-                <el-col :span="12" class="text-green">下跌： 2030只</el-col>
-              </el-row>
-            </div>
+  <div>
+    <el-card shadow="never">
+      <el-row class="bg-white" :gutter="20">
+        <el-col :span="4">
+          <div class="pd10 text-center font-wei_7">xxxxx</div>
+          <div class="pd10 text-center font-size_12">
+            <span style="font-size: 18px; font-weight: 700; color: #39c15b"
+              >0</span
+            >人
           </div>
-        </div>
-        <div class="card-panel" @click="handleSetClick('apple')">
-          <div class="card-panel-description">
-            <div class="card-panel-text">
-              <i
-                class="iconfont iconcaizhangdie_link"
-                style="color: #528fcc; padding-right: 10px; font-size: 25px"
-              ></i
-              >涨跌停
-            </div>
-            <div class="card-panel-num">
-              <el-row>
-                <el-col :span="12" class="text-red">涨停： 35只</el-col>
-                <el-col :span="12" class="text-green">跌停： 12只</el-col>
-              </el-row>
-            </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="pd10 text-center font-wei_7">xxxxx</div>
+          <div class="pd10 text-center font-size_12">
+            <span style="font-size: 18px; font-weight: 700; color: #1890ff"
+              >0</span
+            >人
           </div>
-        </div>
-        <div class="card-panel" @click="handleSetClick('apple')">
-          <div class="card-panel-description">
-            <div class="card-panel-text">
-              <i
-                class="iconfont iconshouyi1"
-                style="color: #528fcc; padding-right: 10px; font-size: 30px"
-              ></i
-              >今日收益
-            </div>
-            <div class="card-panel-num text-red">今收益 : 2.69%</div>
-          </div>
-        </div>
-      </el-col>
-      <el-col :xs="18" :sm="18" :lg="18" class="card-panel-col">
-        <div class="card-panel-right">
-          <ChartsModal :id="id" :option="option"></ChartsModal>
-        </div>
-      </el-col>
-    </el-row>
+        </el-col>
+        <el-col :span="4"></el-col>
+        <el-col :span="4"></el-col>
+        <el-col :span="4"></el-col>
+        <el-col :span="4"></el-col>
+      </el-row>
+    </el-card>
+    <el-card shadow="never" style="margin-top: 10px">
+      <el-row :gutter="20" style="padding: 10px">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="用户管理" name="first">
+            <el-row :gutter="20" class="pdbt10 pdr10 pdl10">
+              <el-table :data="tableData" border stripe style="width: 100%">
+                <el-table-column prop="name" label="店铺名称"></el-table-column>
+                <el-table-column
+                  prop="category_id"
+                  label="所属分类"
+                  width="150"
+                ></el-table-column>
+                <el-table-column
+                  prop="type_id"
+                  label="店铺类型"
+                  width="150"
+                ></el-table-column>
+                <el-table-column prop="describe_name" label="简介" width="500">
+                </el-table-column>
+                <el-table-column
+                  prop="create_time"
+                  label="添加时间"
+                  width="160"
+                ></el-table-column>
+                <el-table-column prop="status_id" label="店铺状态" width="150">
+                  <template slot-scope="scope">
+                    <span v-if="scope.row.status_id == '1'">正常</span>
+                    <span v-else>已禁用</span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="操作" width="200">
+                  <template slot-scope="scope">
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      icon="el-icon-edit"
+                      @click="editItem(scope.row)"
+                    ></el-button>
+                    <el-button
+                      size="mini"
+                      type="danger"
+                      @click="deleteItem(scope.row)"
+                      icon="el-icon-delete"
+                    ></el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-row>
+            <el-row>
+              <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="1"
+                :page-sizes="[10, 20, 30]"
+                :page-size="10"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="10"
+              ></el-pagination>
+            </el-row>
+          </el-tab-pane>
+          <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+          <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+          <el-tab-pane label="定时任务补偿" name="fourth"
+            >定时任务补偿</el-tab-pane
+          >
+        </el-tabs>
+      </el-row>
+    </el-card>
   </div>
 </template>
 <script>
-import ChartsModal from './components/chartsModal'
 export default {
   name: 'welcome',
-  components: {
-    ChartsModal,
-  },
+
   data() {
     return {
-      id: 'id',
-      option: {
-        chart: {
-          type: 'column',
-        },
-        title: {
-          text: '月平均降雨量',
-        },
-        xAxis: {
-          categories: [
-            '跌停',
-            '-8%',
-            '-6%',
-            '-4%',
-            '-2%',
-            '0',
-            '2%',
-            '4%',
-            '6%',
-            '8%',
-            '涨停',
-          ],
-          labels: {
-            align: 'center',
-            x: -25,
-            y: 25,
-          },
-          tickPosition: 'outside',
-          tickWidth: 1,
-          tickAmount: 12,
-        },
-        yAxis: {
-          min: 0,
-          title: {
-            text: '',
-          },
-        },
-        tooltip: {
-          // head + 每个 point + footer 拼接成完整的 table
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-          footerFormat: '</table>',
-          shared: true,
-          useHTML: true,
-        },
-        plotOptions: {
-          column: {
-            borderWidth: 0,
-          },
-        },
-        series: [
-          {
-            name: '东京',
-            data: [
-              {
-                name: 'Point 1',
-                color: '#59b881',
-                y: 40,
-              },
-              {
-                name: 'Point 1',
-                color: '#59b881',
-                y: 50,
-              },
-              {
-                name: 'Point 1',
-                color: '#59b881',
-                y: 125,
-              },
-              {
-                name: 'Point 1',
-                color: '#59b881',
-                y: 454,
-              },
-              {
-                name: 'Point 1',
-                color: '#59b881',
-                y: 1748,
-              },
-              {
-                name: 'Point 1',
-                color: '#d75442',
-                y: 1109,
-              },
-              {
-                name: 'Point 1',
-                color: '#d75442',
-                y: 307,
-              },
-              {
-                name: 'Point 1',
-                color: '#d75442',
-                y: 108,
-              },
-              {
-                name: 'Point 1',
-                color: '#d75442',
-                y: 46,
-              },
-              {
-                name: 'Point 1',
-                color: '#d75442',
-                y: 56,
-              },
-            ],
-          },
-        ],
-      },
+      activeName: 'first',
+      tableData: [],
     }
   },
-  methods: {},
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event)
+    },
+    handleSizeChange() {},
+    handleCurrentChange() {},
+  },
 }
 </script>
-<style lang="scss" scoped>
-.container {
-  padding: 32px;
-  background-color: rgb(240, 242, 245);
-  position: relative;
+<style lang="less" scoped>
+.bg-white {
+  background: #fff;
 }
-.panel-group {
-  margin: 30px 80px;
-  .card-panel-col {
-    margin-bottom: 32px;
-    height: 100%;
-  }
-  .card-panel {
-    height: 126px;
-    cursor: pointer;
-    font-size: 12px;
-    position: relative;
-    overflow: hidden;
-    color: #666;
-    background: #fff;
-    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.05);
-
-    .card-panel-icon-wrapper {
-      float: left;
-      margin: 5px 0 0 14px;
-      padding: 16px;
-      transition: all 0.38s ease-out;
-      border-radius: 6px;
-    }
-
-    .card-panel-icon {
-      float: left;
-      font-size: 48px;
-    }
-
-    .card-panel-description {
-      font-weight: bold;
-      text-align: center;
-      margin-top: 25px;
-      .card-panel-text {
-        color: #000;
-        font-size: 16px;
-      }
-
-      .card-panel-num {
-        padding-top: 20px;
-        font-size: 14px;
-        font-weight: 500;
-      }
-    }
-  }
-  .text-red {
-    color: red;
-  }
-  .text-green {
-    color: green;
-  }
-  .card-panel-right {
-    height: 378px;
-    cursor: pointer;
-    font-size: 12px;
-    position: relative;
-    overflow: hidden;
-    color: #666;
-    background: #fff;
-    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.05);
-  }
+.pd10 {
+  padding: 10px;
+}
+.text-center {
+  text-align: center;
+}
+.font-wei_7 {
+  font-weight: 700;
+}
+.font-size_12 {
+  font-size: 12px;
+}
+.el-table {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.el-pagination {
+  padding: 10px;
 }
 </style>

@@ -1,32 +1,5 @@
 <template>
-  <!-- 头部  -->
-  <div class="navbar">
-    <i
-      :class="getCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
-      style="padding-left: 20px"
-      @click="pointClick"
-    ></i>
-    <!-- <el-button @click="loginout">退出</el-button> -->
-    <el-dropdown>
-      <span class="el-dropdown-link user-span">
-        <img src="@/assets/touxiang.jpg" class="head-portrait" />
-      </span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>
-          <i class="icon iconfont icon-user"></i>
-          <span class="icon-span">个人信息</span>
-        </el-dropdown-item>
-        <el-dropdown-item>
-          <i class="icon iconfont icon-edit-square"></i>
-          <span class="icon-span">修改资料</span>
-        </el-dropdown-item>
-        <el-dropdown-item divided @click.native="loginout">
-          <i class="icon iconfont icon-poweroff"></i>
-          <span class="icon-span">退出</span>
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-  </div>
+  <el-header>Header</el-header>
 </template>
 <script>
 export default {
@@ -36,7 +9,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      user: '',
+    }
   },
   methods: {
     loginout() {
@@ -46,7 +21,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       }).then(function () {
-        window.sessionStorage.clear()
+        window.localStorage.clear()
         that.$router.push('/login')
         that.$message({
           type: 'success',
@@ -61,16 +36,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.el-header {
-  background-color: #373d41;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 0;
-  align-items: center;
-  color: #fff;
-  width: 100%;
-  font-size: 20px;
-}
 .img {
   width: 45px;
   height: 45px;
@@ -103,5 +68,8 @@ export default {
   color: #fff;
   width: 100%;
   position: relative;
+}
+.el-dropdown {
+  font-size: 18px;
 }
 </style>
