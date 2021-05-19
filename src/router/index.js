@@ -29,20 +29,47 @@ const router = new Router({
         name: 'welcome',
         component: resolve => require(['@/components/views/welcome/welcome'], resolve)
       },
+      //订单管理
       {
         path: '/order',
         name: 'order',
         component: resolve => require(['@/components/views/order/order'], resolve)
       },
+      //生产调度
       {
-        path: '/trans',
-        name: 'trans',
-        component: resolve => require(['@/components/views/trans/trans'], resolve)
+        path: '/dispatch',
+        name: 'dispatch',
+        component: resolve => require(['@/components/views/dispatch/dispatch'], resolve)
       },
+      //统计
       {
         path: '/statistics',
         name: 'statistics',
         component: resolve => require(['@/components/views/statistics/statistics'], resolve)
+      },
+      //产线监控
+      {
+        path: '/monitor',
+        name: 'monitor',
+        component: resolve => require(['@/components/views/monitor/monitor'], resolve)
+      },
+      //系统配置
+      {
+        path: '/configuration',
+        name: 'configuration',
+        component: resolve => require(['@/components/views/configuration/configuration'], resolve)
+      },
+      //设备管理
+      {
+        path: '/equipment',
+        name: 'equipment',
+        component: resolve => require(['@/components/views/equipment/equipment'], resolve)
+      },
+      //系统参数
+      {
+        path: '/parameter',
+        name: 'parameter',
+        component: resolve => require(['@/components/views/parameter/parameter'], resolve)
       },
     ]
   },
@@ -52,6 +79,9 @@ const router = new Router({
 //挂载路由导航守卫
 router.beforeEach(function (to, from, next) {
   //在这里可以设置路由拦截
+  if (to.path == '/login') return next();
+  const token = window.localStorage.getItem('token');
+  if (!token) return next('/login');
   next();
 })
 //导出

@@ -2,15 +2,13 @@
   <div>
     <el-card shadow="never">
       <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-        <el-tab-pane label="事件统计" name="first">事件统计</el-tab-pane>
-        <el-tab-pane label="人员操作统计" name="second">
-          人员操作统计
+        <el-tab-pane label="事件码配置" name="first">事件码配置</el-tab-pane>
+        <el-tab-pane label="回应码配置" name="second"> 回应码配置 </el-tab-pane>
+        <el-tab-pane label="心跳间隔/秒" name="third">
+          心跳间隔/秒
         </el-tab-pane>
-        <el-tab-pane label="产线生产统计" name="third">
-          产线生产统计
-        </el-tab-pane>
-        <el-tab-pane label="产线当日上产统计" name="fourth">
-          产线当日上产统计
+        <el-tab-pane label="测呆时间间隔" name="fourth">
+          测呆时间间隔
         </el-tab-pane>
       </el-tabs>
     </el-card>
@@ -18,7 +16,8 @@
 </template>
 <script>
 export default {
-  name: 'statistics',
+  //系统参数
+  name: 'parameter',
   data() {
     return {
       activeName: 'first',

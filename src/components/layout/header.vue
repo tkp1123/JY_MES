@@ -1,5 +1,7 @@
 <template>
-  <el-header>Header</el-header>
+  <el-header>
+    <div class="header_text">xxx工作台</div>
+  </el-header>
 </template>
 <script>
 export default {
@@ -71,5 +73,9 @@ export default {
 }
 .el-dropdown {
   font-size: 18px;
+}
+.header_text {
+  font-weight: 700;
+  padding-left: 50px;
 }
 </style>

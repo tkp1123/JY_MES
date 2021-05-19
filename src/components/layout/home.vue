@@ -8,7 +8,9 @@
         <Nav></Nav>
       </el-aside>
       <el-main class="container_main">
-        <router-view></router-view>
+        <el-row style="padding: 10px 0">
+          <router-view></router-view>
+        </el-row>
       </el-main>
     </el-container>
   </el-container>
@@ -41,7 +43,7 @@ export default {
   line-height: 60px;
   padding: 0;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
   position: fixed;
   top: 0;

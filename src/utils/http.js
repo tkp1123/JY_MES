@@ -12,6 +12,9 @@ const http = {
             url: url
         }
         if (params) config.params = params
+        config.headers = {
+            'Content-Type': 'application/json; charset=utf-8'
+        }
         return request(config)
     },
     post(url, params) {
@@ -20,6 +23,22 @@ const http = {
             url: url
         }
         if (params) config.data = params
+        config.headers = {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+        }
+        return request(config)
+    },
+    put(url, params) {
+        const config = {
+            method: 'PUT',
+            url: url
+        }
+        if (params) {
+            config.data = params
+            config.headers = {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+            }
+        }
         return request(config)
     },
 }

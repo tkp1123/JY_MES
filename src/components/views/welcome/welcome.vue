@@ -104,6 +104,9 @@ export default {
       tableData: [],
     }
   },
+  mounted() {
+    console.log(this.$store.state.user.token)
+  },
   methods: {
     handleClick(tab, event) {
       console.log(tab, event)
@@ -114,21 +117,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.bg-white {
-  background: #fff;
-}
-.pd10 {
-  padding: 10px;
-}
-.text-center {
-  text-align: center;
-}
-.font-wei_7 {
-  font-weight: 700;
-}
-.font-size_12 {
-  font-size: 12px;
-}
 .el-table {
   margin-top: 15px;
   font-size: 14px;

@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3851337",
+      "name": "参数",
+      "font_class": "canshu",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "4641177",
+      "name": "设备",
+      "font_class": "shebei",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "7674918",
+      "name": "配置",
+      "font_class": "yonghupeizhi",
+      "unicode": "e71b",
+      "unicode_decimal": 59163
+    },
+    {
+      "icon_id": "9833343",
+      "name": "监控",
+      "font_class": "jiankong",
+      "unicode": "e91c",
+      "unicode_decimal": 59676
+    },
+    {
+      "icon_id": "20418876",
+      "name": "调度管理",
+      "font_class": "tiaoduguanli",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "683408",
       "name": "交易记录",
       "font_class": "jiaoyijilu",

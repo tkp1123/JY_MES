@@ -11,12 +11,39 @@
       :default-active="$route.path"
     >
       <template v-for="menu in menuList">
-        <el-menu-item :index="'/' + menu.path" :key="menu.id">
+        <el-menu-item :index="menu.path" :key="menu.id" class="menu-item-class">
+          <i :class="menu.icon" style="font-size: 30px"></i>
+          <div class="text-cen">
+            {{ menu.autoName }}
+          </div>
+        </el-menu-item>
+        <!-- <el-submenu :index="menu.id + ''" v-if="menu.children" :key="menu.id">
+          <template slot="title">
+            <i :class="menu.icon" style="font-size: 30px"></i>
+            <div style="width: 100%; text-slign: center">
+              {{ menu.autoName }}
+            </div>
+          </template>
+          <el-menu-item
+            v-for="child in menu.children"
+            :index="'/' + child.path"
+            :key="child.id"
+          >
+            <i class="el-icon-menu"></i>
+            <span>{{ child.autoName }}</span>
+          </el-menu-item>
+        </el-submenu>
+        <el-menu-item
+          :index="'/' + menu.path"
+          :key="menu.id"
+          v-else
+          class="menu-item-class"
+        >
           <i :class="menu.icon" style="font-size: 30px"></i>
           <div style="width: 100%; text-slign: center">
             {{ menu.autoName }}
           </div>
-        </el-menu-item>
+        </el-menu-item> -->
       </template>
     </el-menu>
   </div>
@@ -30,32 +57,54 @@ export default {
         {
           id: '1',
           autoName: '首页',
-          path: 'welcome',
+          path: '/welcome',
           icon: 'iconfont icon-biaoqianA01_shouye-76',
         },
         {
           id: '2',
-          autoName: '单据审核',
-          path: 'order',
+          autoName: '订单管理',
+          path: '/order',
           icon: 'iconfont icon-danju',
         },
         {
           id: '3',
-          autoName: '交易审核',
-          path: 'trans',
-          icon: 'iconfont icon-jiaoyijilu',
+          autoName: '生产调度',
+          path: '/dispatch',
+          icon: 'iconfont icon-tiaoduguanli',
         },
         {
           id: '4',
           autoName: '统计',
-          path: 'statistics',
+          path: '/statistics',
           icon: 'iconfont icon-tongji',
+        },
+        {
+          id: '5',
+          autoName: '产线监控',
+          path: '/monitor',
+          icon: 'iconfont icon-jiankong',
+        },
+        {
+          id: '6',
+          autoName: '系统配置',
+          path: '/configuration',
+          icon: 'iconfont icon-yonghupeizhi',
+        },
+        {
+          id: '7',
+          autoName: '设备管理',
+          path: '/equipment',
+          icon: 'iconfont icon-shebei',
+        },
+        {
+          id: '8',
+          autoName: '系统参数',
+          path: '/parameter',
+          icon: 'iconfont icon-canshu',
         },
       ],
     }
   },
-
-  mounted() {},
 }
 </script>
 <style lang="less" scoped>
@@ -64,23 +113,6 @@ export default {
   color: #333;
   text-align: center;
   line-height: 200px;
-}
-.bbb {
-  position: relative;
-}
-.ccc {
-  padding-left: 23px;
-  margin-top: 20px;
-}
-.ddd:active {
-  background: #f7f7f7;
-}
-.img {
-  width: 45px;
-  height: 45px;
-}
-.img_show {
-  height: 45px;
 }
 .iconfont {
   font-size: 18px;
@@ -102,13 +134,28 @@ export default {
 .el-menu-item {
   padding: 0 !important;
 }
-.el-menu-item,
-.el-submenu__title {
+// .el-menu-item {
+//   height: 90px;
+//   line-height: 25px;
+//   padding-top: 20px !important;
+// }
+.el-menu-item.is-active {
+  background: #eef7ff !important;
+  border-left: 3px solid #0074ff;
+}
+/deep/ .el-submenu__title {
   height: 80px;
+  line-height: 1.5;
+  position: relative;
+  padding: 0 !important;
+}
+.menu-item-class {
+  height: 90px;
   line-height: 25px;
   padding-top: 20px !important;
 }
-.el-menu-item.is-active {
-  background: #eef7ff !important;
+.text-cen {
+  width: 100%;
+  text-align: center;
 }
 </style>

@@ -8,8 +8,7 @@
 </template>
 <script>
 export default {
-  name: 'trans',
-
+  //订单查询
   data() {
     return {}
   },
