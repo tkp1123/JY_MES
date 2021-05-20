@@ -105,7 +105,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$store.state.user.token)
+    //console.log(this.$store.state.user.token)
   },
   methods: {
     handleClick(tab, event) {

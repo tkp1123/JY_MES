@@ -3,16 +3,20 @@
     <el-card shadow="never">
       <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
         <el-tab-pane label="设备(产线)配置" name="first">
-          设备(产线)配置
+          <Device v-if="activeName == 'first'"></Device>
         </el-tab-pane>
       </el-tabs>
     </el-card>
   </div>
 </template>
 <script>
+import Device from './template/device'
 export default {
   //设备管理
   name: 'equipment',
+  components: {
+    Device,
+  },
   data() {
     return {
       activeName: 'first',

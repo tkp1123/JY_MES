@@ -2,20 +2,30 @@
   <div>
     <el-card shadow="never">
       <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-        <el-tab-pane label="订单排产" name="first">订单排产</el-tab-pane>
-        <el-tab-pane label="生产任务单查询" name="second"
-          >生产任务单查询</el-tab-pane
-        >
-        <el-tab-pane label="生产任务管理" name="third"
-          >生产任务管理</el-tab-pane
-        >
+        <el-tab-pane label="订单排产" name="first">
+          <OrderItem v-if="activeName == 'first'"></OrderItem>
+        </el-tab-pane>
+        <el-tab-pane label="生产任务单查询" name="second">
+          <TaskSearch v-if="activeName == 'second'"></TaskSearch>
+        </el-tab-pane>
+        <el-tab-pane label="生产任务管理" name="third">
+          <TaskManage v-if="activeName == 'third'"></TaskManage>
+        </el-tab-pane>
       </el-tabs>
     </el-card>
   </div>
 </template>
 <script>
+import OrderItem from './template/order_item'
+import TaskManage from './template/task_manage'
+import TaskSearch from './template/task_search'
 export default {
   name: 'dispatch',
+  components: {
+    OrderItem,
+    TaskManage,
+    TaskSearch,
+  },
   data() {
     return {
       activeName: 'first',
