@@ -10,6 +10,9 @@ body,
   margin: 0;
   padding: 0;
 }
+.el-row {
+  margin: 0 !important;
+}
 .text-red {
   color: red;
 }
@@ -30,4 +33,9 @@ body,
 }
 .font-size_12 {
   font-size: 12px;
+}
+
+
+.mg10{
+  margin: 10px !important;
 }

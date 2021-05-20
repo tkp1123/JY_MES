@@ -7,7 +7,6 @@ export function loginAPI(params) {
 }
 //订单分页查询
 export function orderAPI(params) {
-    console.log(params)
     return http.get(`/order`, params)
 }
 
