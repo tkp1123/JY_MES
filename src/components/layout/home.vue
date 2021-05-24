@@ -1,14 +1,18 @@
 <template>
   <el-container class="app-wrapper">
     <el-header>
+      <!-- <Header @click.native="clickFullscreen"></Header> -->
       <Header></Header>
     </el-header>
     <el-container class="container">
       <el-aside width="80px">
         <Nav></Nav>
       </el-aside>
-      <el-main class="container_main">
-        <el-row style="padding: 10px 0">
+      <el-main
+        @dblclick.native="clickFullscreen"
+        :class="isFullscreen ? 'container_main_screenfull' : 'container_main'"
+      >
+        <el-row>
           <router-view></router-view>
         </el-row>
       </el-main>
@@ -16,6 +20,7 @@
   </el-container>
 </template>
 <script>
+import screenfull from 'screenfull'
 import Nav from '@/components/layout/nav'
 import Header from '@/components/layout/header'
 export default {
@@ -27,9 +32,29 @@ export default {
 
   //store,
   data() {
-    return {}
+    return {
+      isFullscreen: false,
+    }
   },
-  methods: {},
+  mounted() {
+    window.onresize = () => {
+      this.isFullscreen = screenfull.isFullscreen
+    }
+  },
+  methods: {
+    clickFullscreen() {
+      if (this.$route.path == '/welcome') {
+        if (!screenfull.enabled) {
+          this.$message({
+            message: 'you browser can not work',
+            type: 'warning',
+          })
+          return false
+        }
+        screenfull.toggle()
+      }
+    },
+  },
 }
 </script>
 <style lang="less" scoped>
@@ -50,6 +75,7 @@ export default {
   left: 0;
   right: 0;
 }
+
 .el-aside {
   background-color: #fff;
   color: #828692;
@@ -70,8 +96,18 @@ export default {
 .container_main {
   margin-left: 80px;
 }
+.container_main_screenfull {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  padding: 0 !important;
+  overflow: hidden;
+}
 .el-main {
   background: #f7f7f7;
+  padding: 0 !important;
 }
 .el-main::-webkit-scrollbar {
   width: 2px;

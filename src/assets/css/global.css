@@ -10,6 +10,14 @@ body,
   margin: 0;
   padding: 0;
 }
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .el-row {
   margin: 0 !important;
 }
@@ -38,4 +46,7 @@ body,
 
 .mg10{
   margin: 10px !important;
+}
+.pd20{
+  padding: 20px !important;
 }

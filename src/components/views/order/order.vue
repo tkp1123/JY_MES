@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pd20">
     <el-card shadow="never">
       <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
         <el-tab-pane label="订单查询" name="first">

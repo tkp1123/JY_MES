@@ -1,6 +1,32 @@
 <template>
-  <el-header>
-    <div class="header_text">xxx工作台</div>
+  <el-header class="navbar">
+    <div class="header_left">xxxx平台</div>
+
+    <div class="header_right">
+      <el-dropdown>
+        <i class="el-icon-user" style="color: #fff; font-size: 16px"></i>
+        <span style="color: #fff; font-size: 14px"
+          >管理员<i
+            class="el-icon-arrow-down el-icon--right"
+            style="font-size: 12px"
+          ></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>
+            <i class="icon iconfont icon-user"></i>
+            <span class="icon-span">个人信息</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <i class="icon iconfont icon-edit-square"></i>
+            <span class="icon-span">修改资料</span>
+          </el-dropdown-item>
+          <el-dropdown-item divided @click.native="loginout">
+            <i class="icon iconfont icon-poweroff"></i>
+            <span class="icon-span">退出</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
   </el-header>
 </template>
 <script>
@@ -56,26 +82,32 @@ export default {
   cursor: pointer;
 }
 .head-portrait {
-  width: 45px;
+  width: 40px;
   border-radius: 50%;
   margin: 10px;
   float: right;
 }
 .navbar {
-  background-color: #373d41;
-  display: flex;
+  display: block;
   justify-content: space-between;
   padding-left: 0;
   align-items: center;
   color: #fff;
   width: 100%;
+  justify-items: center;
   position: relative;
 }
-.el-dropdown {
-  font-size: 18px;
+
+.el-dropdown-text {
+  padding-right: 50px;
 }
-.header_text {
+.header_left {
   font-weight: 700;
   padding-left: 50px;
+  float: left;
+}
+.header_right {
+  float: right;
+  padding-right: 10px;
 }
 </style>
